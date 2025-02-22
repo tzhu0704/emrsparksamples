@@ -13,9 +13,9 @@ spark = SparkSession.builder \
         .config("spark.jars.packages",
             "org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,"
             "software.amazon.awssdk:s3:2.30.6,"
-            "software.amazon.awssdk:sts:2.20.0,"
-            "software.amazon.awssdk:kms:2.20.0,"
-            "software.amazon.awssdk:glue:2.20.0") \
+            "software.amazon.awssdk:sts:2.30.6,"
+            "software.amazon.awssdk:kms:2.30.6,"
+            "software.amazon.awssdk:glue:2.30.6") \
         .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions") \
         .config("spark.sql.catalog.glue_catalog", "org.apache.iceberg.spark.SparkCatalog") \
         .config("spark.sql.catalog.glue_catalog.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog") \
