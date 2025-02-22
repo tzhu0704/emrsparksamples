@@ -16,7 +16,7 @@ APP_FILE="resources/tpcds.py"
     
 # Define the locations of required JARs
 ICEBERG_JAR="/data/software/emr/spark-3.5.4/jars/iceberg-spark-runtime-3.5_2.12-1.8.0.jar"
-AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/aws-bundle-2.17.230.jar"
+AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/aws-bundle-2.20.18.jar"
 
 # Submit Spark job
 spark-submit \
