@@ -17,7 +17,6 @@ APP_FILE="tpcds.py"
 
 # Submit Spark job
 spark-submit \
-    # --master yarn --deploy-mode cluster \
     --master local[2] \
     --conf "spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions" \
     --conf "spark.sql.catalog.glue_catalog=org.apache.iceberg.spark.SparkCatalog" \
