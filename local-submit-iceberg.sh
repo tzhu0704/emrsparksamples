@@ -14,6 +14,9 @@ S3_WAREHOUSE="s3://${S3_BUCKET}/${S3_PREFIX}"
 APP_FILE="resources/tpcds.py"
 
     
+# Define the locations of required JARs
+ICEBERG_JAR="/data/software/emr/spark-3.5.4/jars/iceberg-spark-runtime-3.5_2.12-1.8.0.jar"
+AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/aws-bundle-2.17.230.jar"
 
 # Submit Spark job
 spark-submit \
@@ -27,8 +30,9 @@ spark-submit \
     --conf "spark.driver.memory=2g" \
     --conf "spark.executor.memory=2g" \
     --conf "spark.executor.instances=2" \
-    --jars /data/software/emr/spark-3.5.4/jars/iceberg-spark-runtime-3.5_2.12-1.8.0.jar \
+    --jars "${ICEBERG_JAR},${AWS_BUNDLE_JAR}" \
     ${APP_FILE} ${S3_WAREHOUSE}
+
 
 # Check if the job submission was successful
 if [ $? -eq 0 ]; then
