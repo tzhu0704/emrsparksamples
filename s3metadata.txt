@@ -1,0 +1,46 @@
+aws glue create-database --region us-east-1 --catalog-id "509399592849" --database-input \
+'{
+  "Name": "aws_s3_metadata_mys3tablebucket11",
+  "TargetDatabase": {
+    "CatalogId": "509399592849:s3tablescatalog/mys3tablebucket11",
+    "DatabaseName": "aws_s3_metadata"
+  },
+  "CreateTableDefaultPermissions": []
+}'           
+
+aws quicksight list-users --aws-account-id 509399592849 --namespace default --region us-east-1
+
+        resources:
+          limits:
+            cpu: "32"
+            memory: 64Gi
+          requests:
+            cpu: "8"
+            memory: 32Gi
+
+{
+    "UserList": [
+        {
+            "Arn": "arn:aws:quicksight:us-east-1:509399592849:user/default/Admin/tanzhuaz-Isengard",
+            "UserName": "Admin/tanzhuaz-Isengard",
+            "Email": "tanzhuaz@amazon.com",
+            "Role": "ADMIN",
+            "IdentityType": "IAM",
+            "Active": true,
+            "PrincipalId": "federated/iam/AROAXNGUU56IU2BHDZBLL:tanzhuaz-Isengard"
+        }
+    ],
+    "Status": 200,
+    "RequestId": "1d60b8a1-6969-4bfb-916e-eac47e951510"
+}
+
+
+SELECT * FROM "s3tablescatalog/mys3tablebucket11".aws_s3_metadata.s3metadata_tzhu_datatransferhub_portalwebs3loggingbucket0955b_nzjoih7adili
+
+
+SELECT * FROM "s3tablescatalog/mys3tablebucket11".aws_s3_metadata.s3metadata_tzhu_datatransferhub_portalwebs3loggingbucket0955b_nzjoih7adili
+
+
+SELECT * FROM "s3tablescatalog/my-s3-tablebucket0".mydemodb.mytable0
+
+SELECT * FROM s3tablescatalog.aws_s3_metadata.s3metadata_tzhu_datatransferhub_portalwebs3loggingbucket0955b_nzjoih7adili

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+spec:
+  nodeSelector:
+    karpenter.sh/capacity-type: on-demand
+  tolerations:
+  - key: spark-role
+    operator: Equal
+    value: executor
+    effect: NoSchedule
+  containers:
+  - name: spark-kubernetes-executor # This will be interpreted as Spark driver container
