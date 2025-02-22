@@ -9,7 +9,7 @@ from pyspark.sql.functions import *
 spark = (SparkSession.builder.config("spark.hadoop.hive.metastore.client.factory.class",
                                      "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory").enableHiveSupport().getOrCreate())
 
-DOC_EXAMPLE_BUCKET = sys.argv[1]
+DOC_EXAMPLE_BUCKET = sys.argv[2]
 
 # print("S3 bucket name: {}".format(DOC_EXAMPLE_BUCKET))
 
