@@ -11,7 +11,7 @@ S3_PREFIX="example-prefix"
 S3_WAREHOUSE="s3://${S3_BUCKET}/${S3_PREFIX}"
 
 # Your Spark application jar/python file location
-APP_FILE="tpcds.py"
+APP_FILE="resources/tpcds.py"
 
     
 
