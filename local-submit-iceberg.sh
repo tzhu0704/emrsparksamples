@@ -16,7 +16,7 @@ APP_FILE="resources/tpcds.py"
     
 # Define the locations of required JARs
 ICEBERG_JAR="/data/software/emr/spark-3.5.4/jars/iceberg-spark-runtime-3.5_2.12-1.8.0.jar"
-AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/bundle-2.20.18.jar"
+AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/bundle-2.30.26.jar"
 
 # Submit Spark job
 spark-submit \
@@ -27,8 +27,8 @@ spark-submit \
     --conf "spark.sql.catalog.glue_catalog.warehouse=${S3_WAREHOUSE}" \
     --conf "spark.sql.catalog.glue_catalog.io-impl=org.apache.iceberg.aws.s3.S3FileIO" \
     --conf "spark.sql.defaultCatalog=glue_catalog" \
-    --conf "spark.driver.memory=2g" \
-    --conf "spark.executor.memory=2g" \
+    --conf "spark.driver.memory=4g" \
+    --conf "spark.executor.memory=4g" \
     --conf "spark.executor.instances=2" \
     --jars "${ICEBERG_JAR},${AWS_BUNDLE_JAR}" \
     ${APP_FILE} ${S3_WAREHOUSE}
