@@ -10,6 +10,12 @@ from pyspark.sql.functions import *
 #                                      "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory").enableHiveSupport().getOrCreate())
 spark = SparkSession.builder \
         .appName("Iceberg Glue PySpark Demo") \
+        .config("spark.jars.packages",
+            "org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,"
+            "software.amazon.awssdk:s3:2.20.0,"
+            "software.amazon.awssdk:sts:2.20.0,"
+            "software.amazon.awssdk:kms:2.20.0,"
+            "software.amazon.awssdk:glue:2.20.0") \
         .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions") \
         .config("spark.sql.catalog.glue_catalog", "org.apache.iceberg.spark.SparkCatalog") \
         .config("spark.sql.catalog.glue_catalog.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog") \
@@ -44,3 +50,6 @@ creation_date string,
 current_date string)
 USING iceberg
 location '{}/db/myiceberg_demo'""".format(DOC_EXAMPLE_BUCKET))
+
+
+
