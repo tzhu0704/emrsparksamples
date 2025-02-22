@@ -9,8 +9,8 @@ from pyspark.sql.functions import *
 spark = (SparkSession.builder.config("spark.hadoop.hive.metastore.client.factory.class",
                                      "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory").enableHiveSupport().getOrCreate())
 
-DOC_EXAMPLE_BUCKET = sys.argv[2]
-
+DOC_EXAMPLE_BUCKET = sys.argv[1]
+print("-------"+DOC_EXAMPLE_BUCKET )
 # print("S3 bucket name: {}".format(DOC_EXAMPLE_BUCKET))
 
 # nyTaxi = spark.read.option("inferSchema", "true").option("header", "true").csv(sys.argv[2])
