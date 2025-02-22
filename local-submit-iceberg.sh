@@ -28,28 +28,6 @@ AWS_SDK_S3_JAR="${JARS_DIR}/aws-sdk-s3-${AWS_SDK_VERSION}.jar"
 HADOOP_AWS_JAR="${JARS_DIR}/hadoop-aws-${HADOOP_AWS_VERSION}.jar"
 
 
-
-# Download required JARs if they don't exist
-if [ ! -f "${AWS_BUNDLE_JAR}" ]; then
-    echo "Downloading AWS bundle JAR..."
-    wget -O "${AWS_BUNDLE_JAR}" "https://repo1.maven.org/maven2/software/amazon/awssdk/bundle/${AWS_SDK_VERSION}/bundle-${AWS_SDK_VERSION}.jar"
-fi
-
-if [ ! -f "${AWS_SDK_GLUE_JAR}" ]; then
-    echo "Downloading AWS SDK Glue JAR..."
-    wget -O "${AWS_SDK_GLUE_JAR}" "https://repo1.maven.org/maven2/software/amazon/awssdk/glue/${AWS_SDK_VERSION}/glue-${AWS_SDK_VERSION}.jar"
-fi
-
-if [ ! -f "${AWS_SDK_S3_JAR}" ]; then
-    echo "Downloading AWS SDK S3 JAR..."
-    wget -O "${AWS_SDK_S3_JAR}" "https://repo1.maven.org/maven2/software/amazon/awssdk/s3/${AWS_SDK_VERSION}/s3-${AWS_SDK_VERSION}.jar"
-fi
-
-if [ ! -f "${HADOOP_AWS_JAR}" ]; then
-    echo "Downloading Hadoop AWS JAR..."
-    wget -O "${HADOOP_AWS_JAR}" "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/${HADOOP_AWS_VERSION}/hadoop-aws-${HADOOP_AWS_VERSION}.jar"
-fi
-
 # Combine all JARs
 ALL_JARS="${ICEBERG_JAR},${AWS_BUNDLE_JAR},${AWS_SDK_GLUE_JAR},${AWS_SDK_S3_JAR},${HADOOP_AWS_JAR}"
     
@@ -60,7 +38,7 @@ AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/bundle-2.30.26.jar"
 # Submit Spark job
 spark-submit \
     --master local[2] \
-     --packages org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.8.0,org.apache.iceberg:iceberg-aws:1.3.0,software.amazon.awssdk:bundle:2.30.26 \
+     --packages org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,org.apache.iceberg:iceberg-aws:1.3.0,software.amazon.awssdk:glue:2.20.0,software.amazon.awssdk:s3:2.20.0,software.amazon.awssdk:kms:2.20.0,software.amazon.awssdk:s3tables:2.29.26 \
     --conf "spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions" \
     --conf "spark.sql.catalog.glue_catalog=org.apache.iceberg.spark.SparkCatalog" \
     --conf "spark.sql.catalog.glue_catalog.catalog-impl=org.apache.iceberg.aws.glue.GlueCatalog" \
@@ -70,7 +48,7 @@ spark-submit \
     --conf "spark.driver.memory=4g" \
     --conf "spark.executor.memory=4g" \
     --conf "spark.executor.instances=2" \
-    ${APP_FILE} ${S3_WAREHOUSE}
+    ${S3_WAREHOUSE}
 
 
 # Check if the job submission was successful
