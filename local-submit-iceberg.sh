@@ -13,6 +13,45 @@ S3_WAREHOUSE="s3://${S3_BUCKET}/${S3_PREFIX}"
 # Your Spark application jar/python file location
 APP_FILE="resources/tpcds.py"
 
+
+ Define JAR versions
+ICEBERG_VERSION="1.8.0"
+AWS_SDK_VERSION="2.20.18"
+HADOOP_AWS_VERSION="3.3.4"
+
+# Define the locations of required JARs
+JARS_DIR="/data/software/emr/spark-3.5.4/jars"
+ICEBERG_JAR="${JARS_DIR}/iceberg-spark-runtime-3.5_2.12-${ICEBERG_VERSION}.jar"
+AWS_BUNDLE_JAR="${JARS_DIR}/bundle-${AWS_SDK_VERSION}.jar"
+AWS_SDK_GLUE_JAR="${JARS_DIR}/aws-sdk-glue-${AWS_SDK_VERSION}.jar"
+AWS_SDK_S3_JAR="${JARS_DIR}/aws-sdk-s3-${AWS_SDK_VERSION}.jar"
+HADOOP_AWS_JAR="${JARS_DIR}/hadoop-aws-${HADOOP_AWS_VERSION}.jar"
+
+
+
+# Download required JARs if they don't exist
+if [ ! -f "${AWS_BUNDLE_JAR}" ]; then
+    echo "Downloading AWS bundle JAR..."
+    wget -O "${AWS_BUNDLE_JAR}" "https://repo1.maven.org/maven2/software/amazon/awssdk/bundle/${AWS_SDK_VERSION}/bundle-${AWS_SDK_VERSION}.jar"
+fi
+
+if [ ! -f "${AWS_SDK_GLUE_JAR}" ]; then
+    echo "Downloading AWS SDK Glue JAR..."
+    wget -O "${AWS_SDK_GLUE_JAR}" "https://repo1.maven.org/maven2/software/amazon/awssdk/glue/${AWS_SDK_VERSION}/glue-${AWS_SDK_VERSION}.jar"
+fi
+
+if [ ! -f "${AWS_SDK_S3_JAR}" ]; then
+    echo "Downloading AWS SDK S3 JAR..."
+    wget -O "${AWS_SDK_S3_JAR}" "https://repo1.maven.org/maven2/software/amazon/awssdk/s3/${AWS_SDK_VERSION}/s3-${AWS_SDK_VERSION}.jar"
+fi
+
+if [ ! -f "${HADOOP_AWS_JAR}" ]; then
+    echo "Downloading Hadoop AWS JAR..."
+    wget -O "${HADOOP_AWS_JAR}" "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/${HADOOP_AWS_VERSION}/hadoop-aws-${HADOOP_AWS_VERSION}.jar"
+fi
+
+# Combine all JARs
+ALL_JARS="${ICEBERG_JAR},${AWS_BUNDLE_JAR},${AWS_SDK_GLUE_JAR},${AWS_SDK_S3_JAR},${HADOOP_AWS_JAR}"
     
 # Define the locations of required JARs
 ICEBERG_JAR="/data/software/emr/spark-3.5.4/jars/iceberg-spark-runtime-3.5_2.12-1.8.0.jar"
@@ -30,7 +69,7 @@ spark-submit \
     --conf "spark.driver.memory=4g" \
     --conf "spark.executor.memory=4g" \
     --conf "spark.executor.instances=2" \
-    --jars "${ICEBERG_JAR},${AWS_BUNDLE_JAR}" \
+    --jars "${ALL_JARS}" \
     ${APP_FILE} ${S3_WAREHOUSE}
 
 
