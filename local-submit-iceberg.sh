@@ -14,9 +14,9 @@ S3_WAREHOUSE="s3://${S3_BUCKET}/${S3_PREFIX}"
 APP_FILE="resources/tpcds.py"
 
 
- Define JAR versions
+# Define JAR versions
 ICEBERG_VERSION="1.8.0"
-AWS_SDK_VERSION="2.17.230"
+AWS_SDK_VERSION="2.18.230"
 HADOOP_AWS_VERSION="3.3.4"
 
 # Define the locations of required JARs
