@@ -21,6 +21,7 @@ spark = SparkSession.builder \
         .config("spark.sql.catalog.glue_catalog.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog") \
         .config("spark.sql.catalog.glue_catalog.warehouse", "s3://emr-eks-spark-us-east-1-509399592849/example-prefix/") \
         .config("spark.sql.catalog.glue_catalog.io-impl", "org.apache.iceberg.aws.s3.S3FileIO") \
+        .config("spark.hadoop.hive.metastore.client.factory.class", "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory").enableHiveSupport() \
         .getOrCreate()
 
 DOC_EXAMPLE_BUCKET = sys.argv[1]
