@@ -16,7 +16,7 @@ APP_FILE="resources/tpcds.py"
 
  Define JAR versions
 ICEBERG_VERSION="1.8.0"
-AWS_SDK_VERSION="2.20.18"
+AWS_SDK_VERSION="2.17.230"
 HADOOP_AWS_VERSION="3.3.4"
 
 # Define the locations of required JARs
