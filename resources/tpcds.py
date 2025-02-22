@@ -12,7 +12,7 @@ spark = SparkSession.builder \
         .appName("Iceberg Glue PySpark Demo") \
         .config("spark.jars.packages",
             "org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,"
-            "software.amazon.awssdk:s3:2.20.0,"
+            "software.amazon.awssdk:s3:2.30.6,"
             "software.amazon.awssdk:sts:2.20.0,"
             "software.amazon.awssdk:kms:2.20.0,"
             "software.amazon.awssdk:glue:2.20.0") \
