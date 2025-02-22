@@ -38,7 +38,6 @@ AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/bundle-2.30.26.jar"
 # Submit Spark job
 spark-submit \
     --master local[2] \
-     --packages org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,org.apache.iceberg:iceberg-aws:1.3.0,software.amazon.awssdk:glue:2.20.0,software.amazon.awssdk:s3:2.20.0,software.amazon.awssdk:kms:2.20.0,software.amazon.awssdk:s3tables:2.29.26 \
     --conf "spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions" \
     --conf "spark.sql.catalog.glue_catalog=org.apache.iceberg.spark.SparkCatalog" \
     --conf "spark.sql.catalog.glue_catalog.catalog-impl=org.apache.iceberg.aws.glue.GlueCatalog" \
