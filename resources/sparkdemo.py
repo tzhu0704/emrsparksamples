@@ -7,7 +7,7 @@ spark = SparkSession.builder \
     .config("spark.jars.packages",
             "org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,"
             "software.amazon.s3tables:s3-tables-catalog-for-iceberg-runtime:0.1.4,"
-            "software.amazon.awssdk:bom:2.20.186,"
+            "software.amazon.awssdk:bunch:2.20.186,"
             "software.amazon.awssdk:s3:2.20.0,"
             "software.amazon.awssdk:sts:2.20.0,"
             "software.amazon.awssdk:kms:2.20.0,"

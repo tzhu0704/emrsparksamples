@@ -76,7 +76,7 @@ AWS_BUNDLE_JAR="/data/software/emr/spark-3.5.4/jars/bundle-2.30.26.jar"
 
 spark-submit \
     --master local[2] \
-    --packages org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,software.amazon.s3tables:s3-tables-catalog-for-iceberg-runtime:0.1.4,software.amazon.awssdk:bom:2.20.186 \
+    --packages org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.6.1,software.amazon.s3tables:s3-tables-catalog-for-iceberg-runtime:0.1.4,software.amazon.awssdk:bunch:2.20.186 \
     --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions \
     --conf spark.sql.catalog.glue_catalog=org.apache.iceberg.spark.SparkCatalog \
     --conf spark.sql.catalog.glue_catalog.catalog-impl=org.apache.iceberg.aws.glue.GlueCatalog \
@@ -86,7 +86,6 @@ spark-submit \
     --conf spark.sql.catalog.s3tablesbucket.catalog-impl=software.amazon.s3tables.iceberg.S3TablesCatalog \
     --conf spark.sql.catalog.s3tablesbucket.warehouse=arn:aws:s3tables:us-east-1:509399592849:bucket/${dest_bucket} \
     --conf spark.sql.catalog.s3tablesbucket.io-impl=org.apache.iceberg.aws.s3.S3FileIO \
-    --conf "spark.sql.defaultCatalog=glue_catalog" \
     --conf "spark.driver.memory=4g" \
     --conf "spark.executor.memory=4g" \
     --conf "spark.executor.instances=2" \
