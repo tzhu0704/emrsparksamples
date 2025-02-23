@@ -8,6 +8,8 @@ from pyspark.sql.functions import *
 
 # spark = (SparkSession.builder.config("spark.hadoop.hive.metastore.client.factory.class",
 #                                      "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory").enableHiveSupport().getOrCreate())
+
+
 spark = SparkSession.builder \
         .appName("Iceberg Glue PySpark Demo") \
         .config("spark.jars.packages",
@@ -19,8 +21,7 @@ spark = SparkSession.builder \
         .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions") \
         .config("spark.sql.catalog.glue_catalog", "org.apache.iceberg.spark.SparkCatalog") \
         .config("spark.sql.catalog.glue_catalog.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog") \
-        .config("spark.sql.catalog.glue_catalog.warehouse", "s3://emr-eks-spark-us-east-1-509399592849/example-prefix/") \
-        .config("spark.sql.catalog.glue_catalog.io-impl", "org.apache.iceberg.aws.s3.S3FileIO") \
+        .config("spark.sql.catalog.glue_catalog.warehouse", "s3://tzhubucket2/prefix1/") \
         .config("spark.hadoop.hive.metastore.client.factory.class", "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory").enableHiveSupport() \
         .getOrCreate()
 
