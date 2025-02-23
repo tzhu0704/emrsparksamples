@@ -12,6 +12,8 @@ spark = SparkSession.builder \
             "software.amazon.awssdk:kms:2.20.0,"
             "software.amazon.awssdk:glue:2.20.0,"
             "software.amazon.awssdk:dynamodb:2.20.0,"
+                "commons-codec:commons-codec:1.11,"
+            "commons-logging:commons-logging:1.2,"
             "software.amazon.awssdk:s3tables:2.29.26") \
     .config("spark.sql.catalog.s3tablesbucket", "org.apache.iceberg.spark.SparkCatalog") \
     .config("spark.sql.catalog.s3tablesbucket.catalog-impl", "software.amazon.s3tables.iceberg.S3TablesCatalog") \
