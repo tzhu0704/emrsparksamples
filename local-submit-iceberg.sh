@@ -6,10 +6,12 @@
 AWS_REGION="us-east-1"
 S3_BUCKET="emr-eks-spark-us-east-1-509399592849"
 S3_PREFIX="example-prefix"
-
+S3_BUCKET="tzhubucket2"
+S3_PREFIX="prefix1"
+# LOCATION 's3://tzhubucket2/prefix1'
 # Create the full S3 path
 S3_WAREHOUSE="s3://${S3_BUCKET}/${S3_PREFIX}"
-APP_FILE="resources/sparkdemo.py"
+APP_FILE="resources/tpcds.py"
 # Your Spark application jar/python file location
 dest_bucket=mys3tablebucket10
 
